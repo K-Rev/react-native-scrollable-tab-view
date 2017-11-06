@@ -1,6 +1,8 @@
 const React = require('react');
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
+
 const {
-  PropTypes,
   Component,
 } = React;
 const ReactNative = require('react-native');
@@ -20,7 +22,7 @@ const DefaultTabBar = require('./DefaultTabBar');
 const ScrollableTabBar = require('./ScrollableTabBar');
 
 
-const ScrollableTabView = React.createClass({
+const ScrollableTabView = createReactClass({
   mixins: [TimerMixin, ],
   statics: {
     DefaultTabBar,
@@ -68,11 +70,9 @@ const ScrollableTabView = React.createClass({
 
   componentDidMount() {
     this.setTimeout(() => {
-      InteractionManager.runAfterInteractions(() => {
-        if (Platform.OS === 'android') {
-          this.goToPage(this.props.initialPage, false);
-        }
-      });
+      //InteractionManager.runAfterInteractions(() => {
+        this.goToPage(this.props.initialPage, false);
+      //});
     }, 0);
 
     this.state.scrollX.addListener(({ value, }) => {
